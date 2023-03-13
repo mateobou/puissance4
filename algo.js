@@ -20,6 +20,10 @@ for (let i = 0; i < ROWS; i++) {
 
 function dropToken(column, player) {
     for (let i = ROWS - 1; i >= 0; i--) {
+        if (grid[i][column] === EMPTY) {
+            grid[i][column] = player;
+            return true;
+          }
     }
     return false;
   }
