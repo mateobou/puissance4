@@ -14,3 +14,12 @@ for (let i = 0; i < ROWS; i++) {
     grid[i][j] = EMPTY;
   }
 }
+
+
+// Fonction pour insérer un jeton dans la colonne choisie
+
+function dropToken(column, player) {
+    for (let i = ROWS - 1; i >= 0; i--) {
+    }
+    return false;
+  }
