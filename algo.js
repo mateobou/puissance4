@@ -31,7 +31,9 @@ function dropToken(column, player) {
 
   // Fonction pour vérifier s'il y a un alignement de jetons
   function checkWin(player) {
+
     // Vérifier les alignements horizontaux
+
     for (let i = 0; i < ROWS; i++) {
       for (let j = 0; j < COLS - 3; j++) {
         if (grid[i][j] === player && grid[i][j + 1] === player && grid[i][j + 2] === player && grid[i][j + 3] === player) {
@@ -39,4 +41,14 @@ function dropToken(column, player) {
         }
       }
     }
+    
+    // Vérifier les alignements verticaux
+
+  for (let i = 0; i < ROWS - 3; i++) {
+    for (let j = 0; j < COLS; j++) {
+      if (grid[i][j] === player && grid[i + 1][j] === player && grid[i + 2][j] === player && grid[i + 3][j] === player) {
+        return true;
+      }
+    }
+  }
   }
