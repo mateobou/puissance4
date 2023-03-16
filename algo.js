@@ -28,13 +28,15 @@ function dropToken(column, player) {
     return false;
   }
 
-// Fonction pour insérer un jeton dans la colonne choisie
-function dropToken(column, player) {
-    for (let i = ROWS - 1; i >= 0; i--) {
-      if (grid[i][column] === EMPTY) {
-        grid[i][column] = player;
-        return true;
+
+  // Fonction pour vérifier s'il y a un alignement de jetons
+  function checkWin(player) {
+    // Vérifier les alignements horizontaux
+    for (let i = 0; i < ROWS; i++) {
+      for (let j = 0; j < COLS - 3; j++) {
+        if (grid[i][j] === player && grid[i][j + 1] === player && grid[i][j + 2] === player && grid[i][j + 3] === player) {
+          return true;
+        }
       }
     }
-    return false;
   }
