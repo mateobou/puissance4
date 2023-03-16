@@ -11,10 +11,20 @@ const router = Router();
 
 
 
-router.post("/init", async (req, res) => {
+router.get("/init", async (req, res) => {
     //Doit créer 42 cases vides dans la table Game pour initialiser la partie
     for(let x = 1; x<7;x++){
-        const game = await Game.create(req.body);
+        for(let y=1; y<8;y++){
+            const casePuissance4 = {
+                x,
+                y,
+                color:'empty',  
+            }
+            const game = await Game.create(casePuissance4);
+            res.status(201).json(casePuissance4);
+            res.send(casePuissance4)
+        }
+        
     }
   const user = await User.create(req.body);
   res.status(201).json(user);
