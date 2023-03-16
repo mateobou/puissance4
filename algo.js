@@ -41,7 +41,7 @@ function dropToken(column, player) {
         }
       }
     }
-    
+
     // Vérifier les alignements verticaux
 
   for (let i = 0; i < ROWS - 3; i++) {
@@ -52,3 +52,6 @@ function dropToken(column, player) {
     }
   }
   }
+
+  // Afficher la grille
+  console.log(grid);
