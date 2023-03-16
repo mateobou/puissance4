@@ -2,10 +2,10 @@
  * User routes
  */
 const { Router } = require("express");
-const PaginationDTO = require("../dto/PaginationDTO");
-const UsersDtos = require("../dto/UsersDto");
-const { User } = require("../models");
-const Game = require("../models/Game");
+const PaginationDTO = require("../../dto/PaginationDTO");
+const UsersDtos = require("../../dto/UsersDto");
+const { User } = require("../../models");
+const Game = require("../../models/Game");
 
 const router = Router();
 
