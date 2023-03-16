@@ -51,8 +51,9 @@ function dropToken(column, player) {
       }
     }
   }
-  
+
   // Vérifier les alignements diagonaux (de haut en bas)
+
   for (let i = 0; i < ROWS - 3; i++) {
     for (let j = 0; j < COLS - 3; j++) {
       if (grid[i][j] === player && grid[i + 1][j + 1] === player && grid[i + 2][j + 2] === player && grid[i + 3][j + 3] === player) {
@@ -60,7 +61,19 @@ function dropToken(column, player) {
       }
     }
   }
+  
+  
+  // Vérifier les alignements diagonaux (de bas en haut)
+  for (let i = 3; i < ROWS; i++) {
+    for (let j = 0; j < COLS - 3; j++) {
+      if (grid[i][j] === player && grid[i - 1][j + 1] === player && grid[i - 2][j + 2] === player && grid[i - 3][j + 3] === player) {
+        return true;
+      }
+    }
   }
+  
+  return false;
+}
 
   // Afficher la grille
   console.log(grid);
