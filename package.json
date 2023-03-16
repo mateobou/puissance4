@@ -2,25 +2,26 @@
   "name": "puissance4",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mateobou/puissance4.git"
-  },
+    "dev": "nodemon index.js"
+    },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mateobou/puissance4/issues"
+  "volta": {
+    "node": "19.8.0",
+    "npm": "9.6.1"
   },
-  "homepage": "https://github.com/mateobou/puissance4#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "mysql2": "^3.2.0",
     "pg": "^8.10.0",
+    "mysql2": "^3.2.0",
     "sequelize": "^6.29.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
