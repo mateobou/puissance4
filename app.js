@@ -1,23 +1,21 @@
 export const app = express();
 
 import express from 'express';
+import { getAllRoutes } from './middlewares/hateoas.js';
 
+// initialisé link personnalisé middleware
+app.use(getAllRoutes);
 
 app.get('/', (req, res) => {
-
     const message = 'Hello World!';
-    
-    const links = [
-       { href: '/', rel: 'self', method: 'GET', title: 'Home' },
-    ]
-
-    // envoyer aussi adresse editer toute en plus. 
-    
-    const response = {message, links};
-
-    res.json(response);
-
+    res.json(message);
 });
+
+app.get('/example', (req, res) => {
+    const message = 'Hello World!';
+    res.json(message);
+});
+
 
 
 app.listen(3001)
