@@ -5,3 +5,8 @@ module.exports = {
   db,
   User,
 };
+db.sync({
+  alter: true,
+})
+  .then(() => console.log("database updated"))
+  .catch(() => console.log("database update failed"));
