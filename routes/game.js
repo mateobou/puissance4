@@ -4,20 +4,36 @@
 const { Router } = require("express");
 const { User } = require("../models");
 const {Game} = require("../models/");
+const GameInformations = {
+  1:0,
+  2:0,
+  3:0,
+  4:0,
+  5:0,
+  6:0,
+  7:0,
+}
+
 const router = Router();    
 router.get("/", async (req, res) => {
     //Récupérer les cases : 
     const game = await Game.findAll()
     res.status(201).json(game)
 });
-router.post("/Action/:numeroDeColonne", async (req, res) => {
+router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueur => 1 / 2 routes
   const numeroDeColonne = req.params.numeroDeColonne;
+  const numeroDeJoueur = req.query.joueur;
   if(numeroDeColonne > 7 || numeroDeColonne < 0){
     res.status(403).json("Veuillez choisir une colonne entre 0 et 7")
   }
   else{
-    //Ajouter le pion
-    
+    // Query => Couleur 
+    GameInformations[numeroDeColonne] ++
+    Game.create({
+      x:GameInformations[numeroDeColonne],
+      y:0, //gameInformations[numeroDeColonne]+1
+      color:numeroDeJoueur
+    })
   }
   //Doit créer 42 cases vides dans la table Game pour initialiser la partie
   

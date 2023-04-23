@@ -2,7 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 
 module.exports = function (db) {
   class Game extends Model {}
-  //Renommer en Plateau ? 
+  //Renommer en Case ? 
   Game.init(
     {
       x: {
@@ -14,7 +14,7 @@ module.exports = function (db) {
         },
       },
       y: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING,//
         allowNull: false,
       },
       color: {
@@ -27,6 +27,5 @@ module.exports = function (db) {
       sequelize: db,
     }
   );
-
   return Game;
 };
