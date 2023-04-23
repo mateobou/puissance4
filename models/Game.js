@@ -2,7 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 
 module.exports = function (db) {
   class Game extends Model {}
-
+  //Renommer en Plateau ? 
   Game.init(
     {
       x: {

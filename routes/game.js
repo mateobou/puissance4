@@ -3,30 +3,25 @@
  */
 const { Router } = require("express");
 const { User } = require("../models");
-const Game = require("../models/Game");
+const {Game} = require("../models/");
 const router = Router();    
-router.get("/init", async (req, res) => {
-    //Doit créer 42 cases vides dans la table Game pour initialiser la partie
-    for(let x = 1; x<7;x++){
-        for(let y=1; y<8;y++){
-            const casePuissance4 = {
-                x,
-                y,
-                color:'empty',  
-            }
-            const game = await Game.create(casePuissance4);
-            res.status(201).json(casePuissance4);
-            res.send(casePuissance4)
-        }
-    }
-  const user = await User.create(req.body);
-  res.status(201).json(user);
+router.get("/", async (req, res) => {
+    //Récupérer les cases : 
+    const game = await Game.findAll()
+    res.status(201).json(game)
 });
-router.post("/Action", async (req, res) => {
+router.post("/Action/:numeroDeColonne", async (req, res) => {
+  const numeroDeColonne = req.params.numeroDeColonne;
+  if(numeroDeColonne > 7 || numeroDeColonne < 0){
+    res.status(403).json("Veuillez choisir une colonne entre 0 et 7")
+  }
+  else{
+    //Ajouter le pion
+    
+  }
   //Doit créer 42 cases vides dans la table Game pour initialiser la partie
   
-const user = await User.create(req.body);
-res.status(201).json(user);
+  res.status(201).json(user);
 });
 router.get("/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
