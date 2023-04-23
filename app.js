@@ -24,16 +24,25 @@ app.get('/', (req, res) => {
     const message = 'Hello World!';
 
     /* utiliser le middleware traduction key valeur du bon fichier json de langue de la route */ 
-    res.locals.t('Bienvenue');
+    const messageTraduit = res.locals.t('Bienvenue');
 
-    res.json(message);
+
+
+    res.json({
+        message: message,
+        messageTraduit: messageTraduit,
+        routes: req.routes,
+        links: req.links
+      });
+      
+      // res.json(message);
 });
 
 app.get('/example', (req, res) => {
     const message = 'Hello World!';
 
     /* utiliser le middleware traduction key valeur du bon fichier json de langue de la route */ 
-    res.locals.t('Bienvenue');
+
 
     res.json(message);
 });

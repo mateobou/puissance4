@@ -53,6 +53,7 @@ export function getAllRoutes(req, res, next) {
     links.unshift(currentLink);
   }
 
-  // Ajout des liens à la réponse
-  res.json({ routes, links });
+  req.routes = routes;
+  req.links = links;
+  next()
 }
