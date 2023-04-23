@@ -22,10 +22,6 @@ module.exports = function (db) {
         allowNull: false,
         defaultValue: "",
       },
-      firstname: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
     },
     {
       sequelize: db,

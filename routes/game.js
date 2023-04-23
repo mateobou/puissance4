@@ -2,15 +2,9 @@
  * User routes
  */
 const { Router } = require("express");
-const PaginationDTO = require("../dto/PaginationDTO");
-const UsersDtos = require("../dto/UsersDto");
 const { User } = require("../models");
 const Game = require("../models/Game");
-
-const router = Router();
-
-
-
+const router = Router();    
 router.get("/init", async (req, res) => {
     //Doit créer 42 cases vides dans la table Game pour initialiser la partie
     for(let x = 1; x<7;x++){
@@ -24,12 +18,16 @@ router.get("/init", async (req, res) => {
             res.status(201).json(casePuissance4);
             res.send(casePuissance4)
         }
-        
     }
   const user = await User.create(req.body);
   res.status(201).json(user);
 });
-
+router.post("/Action", async (req, res) => {
+  //Doit créer 42 cases vides dans la table Game pour initialiser la partie
+  
+const user = await User.create(req.body);
+res.status(201).json(user);
+});
 router.get("/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   if (user) {

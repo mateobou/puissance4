@@ -3,7 +3,6 @@ module.exports = class UsersDtos {
       this.user = user;
       this.req = req;
     }
-  
     toJSON() {
       return {
         id: this.user.id,

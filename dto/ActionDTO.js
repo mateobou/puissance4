@@ -1,7 +1,9 @@
 module.exports = class GameDTO {
-    constructor(req) {
+    constructor(game, req) {
+      this.game = game;
       this.req = req;
     }
+  
     toJSON() {
       return {
         id: this.game.id,
