@@ -2,10 +2,14 @@ export const app = express();
 import dotenv from 'dotenv';
 import express from 'express';
 import { getAllRoutes } from './middlewares/hateoas.js';
+import { i18next } from './middlewares/i18n.js';
 
 // initialiser dotenv
 dotenv.config();
 const PORT = process.env.PORT || 3001;
+
+// initialiser i18n
+app.use(i18next);
 
 
 
