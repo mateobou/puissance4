@@ -1,3 +1,10 @@
+## Table des matières
+
+1. [gérer les variables d'environnement](#gérer les variables d'environnement)
+2. [Middleware HATEOAS](#middleware hateos)
+3. [Middleware de traduction avec i18next](#middleware de traduction (i18next))
+
+
 ## gérer les variables d'environnement
 la doc de dotenv : https://github.com/motdotla/dotenv#readme
 
