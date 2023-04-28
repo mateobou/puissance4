@@ -5,9 +5,25 @@ import express from 'express';
 import { getAllRoutes } from './middlewares/hateoas.js';
 import { i18n } from './middlewares/i18n.js';
 
+// librairie pour gérer une clef unique pour chaque partie créer de jeu : https://github.com/uuidjs/uuid#readme
+import { v4 as uuidv4 } from 'uuid';
 
 
 
+// initialiser le jeu
+const createGame = () => {
+    return {
+        gameUrl: uuidv4(),
+        players: [],
+        turn: 'X',
+        winner: null,
+        finished: false
+    }
+}
+
+const game = createGame();
+
+console.log(game)
 
 
 
