@@ -49,7 +49,7 @@ linksByRoute.set('/myroute, [
 - method : la méthode de la route (POST, GET, PUT, DELETE)
 - title : le nom de la route
 
-### Middleware de traduction (i18next)
+### middleware de traduction (i18next)
 i18n retourne la traduction dans la bonne langue : gère un site multilingue (en français et en anglais pour nous, mais on pourrait rajouter n’importe quelle langue et ça fonctionnerait).
 
 Dans l’objet request :
