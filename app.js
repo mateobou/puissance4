@@ -14,9 +14,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 // initialise la route de la création de partie
 app.post('/creattion-partie', (req, res) => {
-    const gameUrl = `${req.protocol}://${req.hostname}/game/${gameId}`;
     const playerOne = uuidv4();
     const playerTwo = uuidv4();
+    const gameUrl = `${req.protocol}://${req.hostname}/game/?playerOne=${playerOne}/?playerTwo=${playerTwo}`;
 
     res.status(201).json({ gameUrl, playerOne, playerTwo });
 })
