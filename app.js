@@ -8,12 +8,16 @@ import { i18n } from './middlewares/i18n.js';
 
 
 
+
+
+
 // initialiser dotenv
 dotenv.config();
 const PORT = process.env.PORT || 3001;
 
 // initialiser i18n
 app.use(i18n);
+
 
 
 
@@ -34,11 +38,9 @@ app.get('/', (req, res) => {
         routes: req.routes,
         links: req.links
       });
-      
-      // res.json(message);
 });
 
-app.get('/example', (req, res) => {
+app.get('/exemple', (req, res) => {
     const message = 'Hello World!';
 
     /* utiliser le middleware traduction key valeur du bon fichier json de langue de la route */ 
