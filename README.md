@@ -5,6 +5,7 @@ la doc de dotenv : https://github.com/motdotla/dotenv#readme
 
 ### middleware hateos
 HATEOAS retourne quand on fait un appel HTTPS sur Insomnia ou Postman :
+```
 {
 	"routes": [
 		"/route1",
@@ -35,14 +36,17 @@ HATEOAS retourne quand on fait un appel HTTPS sur Insomnia ou Postman :
 		}
 	]
 }
+```
 
 On reçoit en premier toutes les routes que comprend notre API, d'abord le lien de la route sur lequel on a lancé la requête HTTP, puis les autres routes de notre application. Plus bas, on a le détail de chaque route avec leurs links utilisés. Voir la prochaine section pour comprendre le contenu de nos links.
 
 #### Pour ajouter un link dans une route
 Aller dans le middleware HATEOAS et ajouter un lien dans la fonction 'linksByRoute' comme ceci :
+```
 linksByRoute.set('/myroute, [
     {href: '/myroute', rel: 'self', method: 'GET', title: 'myroute'},
 ]);
+```
 
 - href : l'url de la route
 - rel : le nom de la route
@@ -63,6 +67,7 @@ Nota bene : tous nos fichiers json des différentes langues associées à une pa
 2. On peut désormais utiliser la fonction res.locals.t() pour appeler la clé qui va nous retourner la valeur associée (notre traduction souhaitée).
 
 Exemple concret :
+```
 // Étape 1
 import { i18n } from './middlewares/i18n.js';
 app.use(i18n);
@@ -72,3 +77,4 @@ res.json({
 routes: req.routes,
 links: req.links
 });
+```
