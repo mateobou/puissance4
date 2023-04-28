@@ -10,20 +10,19 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-// initialiser le jeu
-const createGame = () => {
-    return {
-        gameUrl: uuidv4(),
-        players: [],
-        turn: 'X',
-        winner: null,
-        finished: false
-    }
-}
+/* DEBUT CREATION URL ET LINKED DEUX JOUEURS */
 
-const game = createGame();
+// initialise la route de la création de partie
+app.post('/creattion-partie', (req, res) => {
+    const gameUrl = `${req.protocol}://${req.hostname}/game/${gameId}`;
+    const playerOne = uuidv4();
+    const playerTwo = uuidv4();
 
-console.log(game)
+    res.status(201).json({ gameUrl, playerOne, playerTwo });
+})
+
+/* FIN CREATION URL ET LINKED DEUX JOUEURS */ 
+
 
 
 
