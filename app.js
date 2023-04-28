@@ -25,15 +25,10 @@ app.use(i18n);
 app.use(getAllRoutes);
 
 app.get('/', (req, res) => {
-    const message = 'Hello World!';
-
     /* utiliser le middleware traduction key valeur du bon fichier json de langue de la route */ 
     const messageTraduit = res.locals.t('Bienvenue');
 
-
-
     res.json({
-        message: message,
         messageTraduit: messageTraduit,
         routes: req.routes,
         links: req.links
@@ -41,12 +36,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/exemple', (req, res) => {
-    const message = 'Hello World!';
 
     /* utiliser le middleware traduction key valeur du bon fichier json de langue de la route */ 
+    const messageTraduitOne = res.locals.t('Bienvenue');
 
-
-    res.json(message);
+    res.json(
+        messageTraduitOne
+    );
 });
 
 
