@@ -15,7 +15,7 @@ const GameInformations = {
 }
 
 const router = Router();    
-router.get("/", async (req, res) => {
+router.get("/game", async (req, res) => {
     //Récupérer les cases : 
     const game = await Game.findAll()
     res.status(201).json(game)
