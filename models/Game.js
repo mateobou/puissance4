@@ -11,7 +11,7 @@ import { Model, DataTypes } from "sequelize";
       x: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        // unique: true,
         /* validate: {
           isEmail: true,
         },*/

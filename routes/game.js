@@ -30,8 +30,8 @@ router.get("/game", async (req, res) => {
     const game = await Game.findAll()
 
     // Créer raw pour tester si ca marche
-    const nexGameRow = await Game.create({x: "test", y: "test", color: "blue"});
-    console.log(nexGameRow.toJSON())
+    // const nexGameRow = await Game.create({x: "test", y: "test", color: "blue"});
+    // console.log(nexGameRow.toJSON())
 
     res.status(201).json(game)
 });
