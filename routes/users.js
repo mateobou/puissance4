@@ -9,8 +9,8 @@ const UsersDtos = require("../dto/UsersDto");
 const { User } = require("../models"); */
 
 import { Router } from "express";
-import PaginationDTO from "../dto/PaginationDTO.js";
-import UsersDtos from "../dto/UsersDto.js";
+import { PaginationDTO } from "../dto/PaginationDTO.js";
+import { UsersDtos } from "../dto/UsersDto.js";
 import { User } from "../models/index.js";
 
 
