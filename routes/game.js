@@ -15,16 +15,10 @@ const GameInformations = {
 }
 
 const router = Router();    
-router.get("/game", async (req, res) => {
-
-  
-  const gameChange = await Game.create({x:"1", y: "2", color: "pink" })
-  console.log("color : " + gameChange)
-
-
-  //Récupérer les cases : 
-  const game = await Game.findAll()
-  res.status(201).json(game)
+router.get("/", async (req, res) => {
+    //Récupérer les cases : 
+    const game = await Game.findAll()
+    res.status(201).json(game)
 });
 
 /*
