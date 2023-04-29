@@ -15,11 +15,21 @@ const GameInformations = {
 }
 
 const router = Router();    
-router.get("/", async (req, res) => {
-    //Récupérer les cases : 
-    const game = await Game.findAll()
-    res.status(201).json(game)
+router.get("/game", async (req, res) => {
+
+  
+  const gameChange = await Game.create({x:"1", y: "2", color: "pink" })
+  console.log("color : " + gameChange)
+
+
+  //Récupérer les cases : 
+  const game = await Game.findAll()
+  res.status(201).json(game)
 });
+
+/*
+
+
 router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueur => 1 / 2 routes
   const numeroDeColonne = req.params.numeroDeColonne;
   const numeroDeJoueur = req.query.joueur;
@@ -39,6 +49,8 @@ router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueu
   
   res.status(201).json(user);
 });
+
+
 router.get("/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   if (user) {
@@ -67,5 +79,8 @@ router.delete("/:id", async (req, res) => {
     res.sendStatus(404);
   }
 });
+
+
+*/
 
 module.exports = router;

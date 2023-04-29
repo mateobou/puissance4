@@ -9,12 +9,12 @@ module.exports = function (db) {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        validate: {
+        /* validate: {
           isEmail: true,
-        },
+        },*/
       },
       y: {
-        type: DataTypes.STRING,//
+        type: DataTypes.STRING,
         allowNull: false,
       },
       color: {

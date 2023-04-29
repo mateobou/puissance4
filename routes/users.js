@@ -8,7 +8,7 @@ const { User } = require("../models");
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.get("/user", async (req, res) => {
   const { order = {}, page, items_per_page = 30, ...filters } = req.query;
   const options = {
     where: filters,
@@ -29,12 +29,12 @@ router.get("/", async (req, res) => {
   res.send(new PaginationDTO(usersDtos, totalUsers, req));
 });
 
-router.post("/", async (req, res) => {
+router.post("/user", async (req, res) => {
   const user = await User.create(req.body);
   res.status(201).json(user);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/user/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   if (user) {
     res.json(user);
@@ -43,7 +43,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/user/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   if (user) {
     await user.update(req.body);
@@ -53,7 +53,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/user/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
   if (user) {
     await user.destroy();
