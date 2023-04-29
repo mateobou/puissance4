@@ -1,4 +1,4 @@
-class PaginationDTO {
+export default class PaginationDTO {
     constructor(items, totalCount, req) {
       this.items = items;
       this.totalCount = totalCount;
@@ -46,4 +46,3 @@ class PaginationDTO {
   }
   
   // module.exports = PaginationDTO;
-  export default PaginationDTO;

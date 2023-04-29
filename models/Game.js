@@ -5,7 +5,7 @@ import { Model, DataTypes } from "sequelize";
 // module.exports = function (db) {
   function game (db) {
   class Game extends Model {}
-  //Renommer en Case ? 
+  //Renommer en Case ? Ld : Moi j'aime bien Game
   Game.init(
     {
       x: {
