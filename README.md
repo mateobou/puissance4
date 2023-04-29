@@ -1,15 +1,16 @@
 ## Table des matières
 
-1. [Notre mise en place](#Notre mise en place)
-2. [Middleware HATEOAS](#middleware hateos)
-3. [Middleware de traduction avec i18next](#middleware de traduction (i18next)
-4. [Middleware de route Game pour notre base de données](#middleware de route Game)
-4. [Middleware de route Partie pour notre base de données](#middleware de route Partie)
+1. [Notre mise en place](#Notre-mise-en-place)
+2. [Middleware HATEOAS](#middleware-hateos)
+3. [Middleware de traduction avec i18next](#middleware-de-traduction-i18next)
+4. [Middleware de route Game pour notre base de données](#middleware-de-route-Game)
+4. [Middleware de route Partie pour notre base de données](#middleware-de-route-Partie)
 
 
 
 
 ## Notre mise en place
+<a name="Notre-mise-en-place"></a>
 
 ### gérer les variables d'environnement
 la doc de dotenv : https://github.com/motdotla/dotenv#readme
@@ -23,6 +24,8 @@ On a créé une base de données SQL grâce à Sequelize : https://sequelize.org
 ## Explication de nos middlewares
 
 ### middleware hateos
+<a name="middleware-hateos"></a>
+
 HATEOAS retourne quand on fait un appel HTTPS sur Insomnia ou Postman :
 ```
 {
@@ -73,6 +76,8 @@ linksByRoute.set('/myroute, [
 - title : le nom de la route
 
 ### middleware de traduction (i18next)
+<a name="middleware-de-traduction-i18next"></a>
+
 i18n retourne la traduction dans la bonne langue : gère un site multilingue (en français et en anglais pour nous, mais on pourrait rajouter n’importe quelle langue et ça fonctionnerait).
 
 Dans l’objet request :
@@ -99,8 +104,12 @@ links: req.links
 ```
 
 ### middleware de route Game
+<a name="middleware-de-route-Game"></a>
+
 // a compléter
 
 
 ### middleware de route Partie
+<a name="middleware-de-route-Partie"></a>
+
 // a compléter
