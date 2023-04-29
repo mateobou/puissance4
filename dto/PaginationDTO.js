@@ -45,5 +45,5 @@ class PaginationDTO {
     }
   }
   
-  module.exports = PaginationDTO;
-  
+  // module.exports = PaginationDTO;
+  export default PaginationDTO;

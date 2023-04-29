@@ -1,4 +1,5 @@
-module.exports = class UsersDtos {
+// module.exports = class UsersDtos {
+  export default class UsersDtos {
     constructor(user, req) {
       this.user = user;
       this.req = req;

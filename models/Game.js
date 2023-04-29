@@ -1,6 +1,9 @@
-const { Model, DataTypes } = require("sequelize");
+// const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-module.exports = function (db) {
+
+// module.exports = function (db) {
+  function game (db) {
   class Game extends Model {}
   //Renommer en Case ? 
   Game.init(
@@ -29,3 +32,5 @@ module.exports = function (db) {
   );
   return Game;
 };
+
+export default game;

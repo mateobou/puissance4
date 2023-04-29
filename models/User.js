@@ -1,6 +1,8 @@
-const { Model, DataTypes } = require("sequelize");
+// const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-module.exports = function (db) {
+// module.exports = function (db) {
+  export default function (db) {
   class User extends Model {}
 
   User.init(
