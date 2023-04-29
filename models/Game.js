@@ -17,6 +17,9 @@ import { Model, DataTypes } from "sequelize";
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: "",
+        validate: {
+          isIn: [['blue', 'red']],
+        },
       },
     },
     {sequelize: db, modelName: "Game"}
