@@ -1,29 +1,14 @@
-/* 
-const db = require("../lib/db");
-const User = require("./User")(db);
-const Game = require("./Game")(db);
-const GameInformations = require("./GameInformations")(db);
-*/
-
 import db from "../lib/db.js";
-import createUserModel from "./User.js";
+import createPartieModel from "./Partie.js";
 import createGameModel from "./Game.js";
 import createGameInformationsModel from "./GameInformations.js";
 
-const User = createUserModel(db);
+const Partie = createPartieModel(db);
 const Game = createGameModel(db);
 const GameInformations = createGameInformationsModel(db);
 
 
-/*
-module.exports = {
-  db,
-  User,
-  Game,
-  GameInformations
-};
-*/
-export { db, User, Game, GameInformations };
+export { db, Partie, Game, GameInformations };
 
 
 

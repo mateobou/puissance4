@@ -1,12 +1,7 @@
 /**
  * User routes
  */
-/* const { Router } = require("express");
-const { User } = require("../models");
-const {Game} = require("../models/"); */
-
 import { Router } from "express";
-import { User } from "../models/index.js";
 import { Game } from "../models/index.js";
 
 
@@ -36,7 +31,15 @@ router.get("/game", async (req, res) => {
     res.status(201).json(game)
 });
 
-/*
+
+
+
+
+
+
+
+
+/* On ne s'en sert pas, si jamais c'est là :
 
 
 router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueur => 1 / 2 routes
