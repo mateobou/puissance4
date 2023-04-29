@@ -18,7 +18,8 @@ const router = Router();
 router.get("/", async (req, res) => {
     //Récupérer les cases : 
     const game = await Game.findAll()
-    res.status(201).json(game)
+    res.send('Hello')
+    res.status(201).json("Hello world")
 });
 router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueur => 1 / 2 routes
   const numeroDeColonne = req.params.numeroDeColonne;

@@ -3,10 +3,10 @@
  */
 const express = require("express");
 const app = express();
-
+const game = require('./routes/game')
 // middleware
+app.use(("/game", game));
 app.use(express.json());
-app.use(("/v1/users", require("./routes/users")));
-app.use(("/game", require("./routes/game")));
+app.use(("/users", require("./routes/users")));
 
 module.exports = app;
