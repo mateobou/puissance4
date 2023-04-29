@@ -1,12 +1,24 @@
 ## Table des matières
 
-1. [gérer les variables d'environnement](#gérer les variables d'environnement)
+1. [Notre mise en place](#Notre mise en place)
 2. [Middleware HATEOAS](#middleware hateos)
-3. [Middleware de traduction avec i18next](#middleware de traduction (i18next))
+3. [Middleware de traduction avec i18next](#middleware de traduction (i18next)
+4. [Middleware de route Game pour notre base de données](#middleware de route Game)
+4. [Middleware de route Partie pour notre base de données](#middleware de route Partie)
 
 
-## gérer les variables d'environnement
+
+
+## Notre mise en place
+
+### gérer les variables d'environnement
 la doc de dotenv : https://github.com/motdotla/dotenv#readme
+
+### pour notre base de données
+On a créé une base de données SQL grâce à Sequelize : https://sequelize.org/. 
+
+
+
 
 ## Explication de nos middlewares
 
@@ -85,3 +97,10 @@ routes: req.routes,
 links: req.links
 });
 ```
+
+### middleware de route Game
+// a compléter
+
+
+### middleware de route Partie
+// a compléter
