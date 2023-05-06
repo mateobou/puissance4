@@ -17,10 +17,6 @@ const GameInformations = {
 
 const router = Router();    
 router.get("/game", async (req, res) => {
-
-
-  
-
     //Récupérer les cases : 
     const game = await Game.findAll()
 
