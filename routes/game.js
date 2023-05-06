@@ -35,7 +35,6 @@ router.get("/game", async (req, res) => {
 
 
 
-/* On ne s'en sert pas, si jamais c'est là :
 
 
 router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueur => 1 / 2 routes
@@ -45,16 +44,14 @@ router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueu
     res.status(403).json("Veuillez choisir une colonne entre 0 et 7")
   }
   else{
-    // Query => Couleur 
     GameInformations[numeroDeColonne] ++
     Game.create({
       x:GameInformations[numeroDeColonne],
-      y:0, //gameInformations[numeroDeColonne]+1
+      y:gameInformations[numeroDeColonne]+1,
       color:numeroDeJoueur
     })
+    gameInformations[numeroDeColonne]
   }
-  //Doit créer 42 cases vides dans la table Game pour initialiser la partie
-  
   res.status(201).json(user);
 });
 
