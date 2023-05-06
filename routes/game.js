@@ -3,6 +3,7 @@
  */
 import { Router } from "express";
 import { Game } from "../models/index.js";
+import checkWin from "../lib/algo.js";
 
 
 const GameInformations = {
@@ -52,7 +53,8 @@ router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueu
     })
     gameInformations[numeroDeColonne]
   }
-  res.status(201).json(user);
+  checkWin('joueur 1') ? res.status(201).json("Vous avez gagné") : res.status(201).json("Quel coup de maître !");
+  
 });
 
 
