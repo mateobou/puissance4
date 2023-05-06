@@ -1,4 +1,5 @@
-module.exports = class UsersDtos {
+// module.exports = class UsersDtos {
+export default class UsersDTO {
     constructor(user, req) {
       this.user = user;
       this.req = req;
@@ -7,7 +8,10 @@ module.exports = class UsersDtos {
     toJSON() {
       return {
         id: this.user.id,
-        name: this.user.name,
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        email: this.user.email,
+        password: this.user.password,
         createdAt: this.user.createdAt,
         updatedAt: this.user.updatedAt,
         _links: {

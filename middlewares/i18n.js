@@ -1,14 +1,13 @@
-import { assert } from "console";
 import i18next from "i18next";
 // import traductionFr from url === '/' ? "../traductions/home/fr.json" : "../traductions" + url + "/fr.json" assert { type: "json" };
 // import traductionEn from url === '/' ? "../traductions/home/en.json" : "../traductions" + url + "/en.json" assert { type: "json" }; 
 
 
-import traductionHomeFr from "../traductions/home/fr.json" assert { type: "json" };
-import traductionHomeEn from "../traductions/home/en.json" assert { type: "json" };
+ import traductionHomeFr from "../traductions/home/fr.json" assert { type: "json" };
+ import traductionHomeEn from "../traductions/home/en.json" assert { type: "json" };
 
-import traductionExempleFR from "../traductions/exemple/fr.json" assert { type: "json" };
-import traductionExempleEn from "../traductions/exemple/en.json" assert { type: "json" };
+ import traductionExempleFR from "../traductions/exemple/fr.json" assert { type: "json" };
+ import traductionExempleEn from "../traductions/exemple/en.json" assert { type: "json" };
 
 
 
