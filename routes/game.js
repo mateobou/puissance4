@@ -1,11 +1,13 @@
 /**
  * User routes
  */
+import { v4 as uuidv4 } from 'uuid';
 import { Router } from "express";
 import { Game } from "../models/index.js";
+import { UUID, UUIDV4 } from "sequelize";
 import checkWin from "../lib/algo.js";
 
-
+let Joueur = 1
 const GameInformations = {
   1:0,
   2:0,
@@ -28,35 +30,73 @@ router.get("/game", async (req, res) => {
     res.status(201).json(game)
 });
 
-
-
-
-
-
-
-
-
-
-
-router.post("/Action/:numeroDeColonne", async (req, res) => {// Couleur du joueur => 1 / 2 routes
-  const numeroDeColonne = req.params.numeroDeColonne;
-  const numeroDeJoueur = req.query.joueur;
-  if(numeroDeColonne > 7 || numeroDeColonne < 0){
-    res.status(403).json("Veuillez choisir une colonne entre 0 et 7")
+router.post('/init', async (req,res)=>{
+  for(let i = 0;i<8;i++){
+    for (let j =0; j<7; j++)
+    {
+      try {
+        await Game.create({
+          id: 3,
+          x: 4,
+          y: 5,
+          color: 'blue'
+        }, { ignoreDuplicates: true });
+        res.send("success")
+      } catch (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+          console.log('Entrée en double ignorée.');
+        } else {
+          console.log('Une erreur est survenue : ', error);
+        }
+      }
+    }
   }
-  else{
-    GameInformations[numeroDeColonne] ++
-    Game.create({
-      x:GameInformations[numeroDeColonne],
-      y:gameInformations[numeroDeColonne]+1,
-      color:numeroDeJoueur
-    })
-    gameInformations[numeroDeColonne]
+})
+router.delete('/supprimer', async (req, res) => {
+  try {
+    await Game.destroy({
+      where: {},
+      truncate: true
+    });
+    res.status(200).json('Toutes les données ont été supprimées');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Erreur lors de la suppression des données');
   }
-  checkWin('joueur 1') ? res.status(201).json("Vous avez gagné") : res.status(201).json("Quel coup de maître !");
-  
 });
 
+router.put("/Action/:numeroDeColonne", async (req, res) => {
+  const numeroDeColonne = req.params.numeroDeColonne;
+  if (numeroDeColonne > 7 || numeroDeColonne < 0) {
+    res.status(403).json("Veuillez choisir une colonne entre 0 et 7")
+  } else {
+    Game.findOne({ where: { x: numeroDeColonne }, order: [["y", "DESC"]] })
+    .then(gameInstance => {
+    if (!gameInstance) {
+    res.status(404).json("Aucune case disponible dans cette colonne")
+    } else {
+    GameInformations[numeroDeColonne]++
+    const updatedColor = Joueur == 1 ? "red" : "blue"
+    gameInstance.update({ color: updatedColor, y: GameInformations[numeroDeColonne] })
+    .then(() => {
+    Joueur = Joueur == 1 ? 2 : 1
+    res.send("Superbe coup ! Au tour du joueur " + Joueur + " de joueur désormais")
+    })
+    .catch(error => {
+    console.log(error)
+    res.status(500).json("Une erreur est survenue lors de la mise à jour de la case")
+    })
+    }
+    })
+  .catch(error => {
+  console.log(error)
+  res.status(500).json("Une erreur est survenue lors de la recherche de la case")
+  })
+}
+  checkWin('blue') ? res.status(201).json("Vous avez gagné") : res.status(201).json("Quel coup de maître !");
+  });
+  
+  
 
 // module.exports = router;
 export default router;
