@@ -32,7 +32,12 @@ const MettreUtilisateursDansBDD = async () => {
         }];
 
         for (const p of utilisateurs) {
-            await User.create(p);
+            await User.create({
+                firstName: p.firstName,
+                lastName: p.lastName,
+                email: p.email,
+                password: p.password,
+            });
         }
 
         console.log("utilisateurs factices  mis dans la BDD");
