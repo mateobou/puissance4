@@ -1,6 +1,22 @@
 export const app = express();
 import dotenv from 'dotenv';
 import express from 'express';
+import Sequelize from "sequelize";
+import {configDotenv} from "dotenv";
+
+/*
+var env       = process.env.NODE_ENV || 'development';
+var config    = require(__dirname + '/../config/config.json')[env];
+ */
+
+dotenv.config();
+
+
+if (config.use_env_variable) {
+    let sequelize = new Sequelize(process.env[config.use_env_variable]);
+} else {
+    let sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
 /* importer nos middlewares */
 import { getAllRoutes } from './middlewares/hateoas.js';
