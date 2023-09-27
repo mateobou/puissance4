@@ -1,22 +1,6 @@
-export const app = express();
-import dotenv from 'dotenv';
 import express from 'express';
-import Sequelize from "sequelize";
-import {configDotenv} from "dotenv";
 
-/*
-var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/../config/config.json')[env];
- */
-
-dotenv.config();
-
-
-if (config.use_env_variable) {
-    let sequelize = new Sequelize(process.env[config.use_env_variable]);
-} else {
-    let sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+import dotenv from 'dotenv';
 
 /* importer nos middlewares */
 import { getAllRoutes } from './middlewares/hateoas.js';
@@ -25,6 +9,10 @@ import { i18n } from './middlewares/i18n.js';
 // test connexion BDD avec users
 import sequelize from "./lib/db.js";
 import User from "./models/User.js";
+
+dotenv.config();
+export const app = express();
+
 
 sequelize.sync().then(() => {
     console.log("Base de donnée sequelize synchronisé et marche bien");
@@ -63,7 +51,7 @@ const MettreUtilisateursDansBDD = async () => {
     }
 }
 
-MettreUtilisateursDansBDD();
+
 
 
 
@@ -84,6 +72,9 @@ app.use(getAllRoutes);
 
 
 app.get('/utilisateurs', async (req, res) => {
+    MettreUtilisateursDansBDD();
+
+
     try {
         const AllUtilisateurs = await User.findAll();
         res.json(AllUtilisateurs);

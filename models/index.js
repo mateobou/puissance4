@@ -41,3 +41,13 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+/* avant :
+const db = require("../lib/db");
+const User = require("./User")(db);
+
+module.exports = {
+  db,
+  User,
+};
+ */
