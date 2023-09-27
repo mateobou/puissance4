@@ -9,6 +9,7 @@ import { i18n } from './middlewares/i18n.js';
 // test connexion BDD avec users
 import sequelize from "./lib/db.js";
 import User from "./models/User.js";
+import {where} from "sequelize";
 
 dotenv.config();
 export const app = express();
@@ -23,6 +24,16 @@ sequelize.sync().then(() => {
 
 const MettreUtilisateursDansBDD = async () => {
     try {
+
+        await User.destroy({
+            where: {},
+            force: true,
+        });
+
+        // réinitialiser aussi les id
+        await sequelize.query('ALTER SEQUENCE "Users_id_seq" RESTART WITH 1');
+
+
         const utilisateurs = [{
             firstName: "Lima",
             lastName: "Root",
@@ -31,7 +42,7 @@ const MettreUtilisateursDansBDD = async () => {
         }, {
             firstName: "Loumo",
             lastName: "Hernebes",
-            email: "exemple@test.com",
+            email: "exemple2@test.com",
             password: "root",
         }];
 
