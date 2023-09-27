@@ -17,7 +17,14 @@ la doc de dotenv : https://github.com/motdotla/dotenv#readme
 
 ### pour notre base de données
 On a créé une base de données SQL grâce à Sequelize : https://sequelize.org/. 
+Et postgres https://www.postgresql.org/ avec psql. Attention si vous téléchargez postgres avec homebrew (la version 14.9, la dernière) il peut avoir un problème d'emplacement : https://www.postgresql.org/docs/16/tutorial-createdb.html (si pb aide -> sur le terminal de mac chercher which postgres). 
 
+#### installer postgres sur son mac
+Dans terminal, écrivez "createdb puissanec4" (on installe la database puissance4), puis sortir de là. Et sur nouveau terminal tapez "psql puissance4", si on peut rentrer dedans, c'est cool ca marche si on voit :
+![Postgress résultat attendu pour database](./ressource/inDatabaseWithPostgre.png)
+
+
+On peut lancer le serveur : npm run watch maintenant et aller dans la / (home) pour voir toutes nos routes grâce à HATEOAS.
 
 
 
