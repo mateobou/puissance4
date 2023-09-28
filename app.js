@@ -13,6 +13,20 @@ import {where} from "sequelize";
 
 dotenv.config();
 export const app = express();
+app.use(express.json());
+
+
+// initialiser dotenv
+dotenv.config();
+const PORT = process.env.PORT || 3001;
+
+// initialiser i18n
+app.use(i18n);
+
+
+
+
+
 
 
 sequelize.sync().then(() => {
@@ -21,7 +35,7 @@ sequelize.sync().then(() => {
     console.log("la BDD sequelize n'est pas relié, ca ne marche pas", err);
 })
 
-
+// voir les utilisateurs
 const MettreUtilisateursDansBDD = async () => {
     try {
 
@@ -34,6 +48,7 @@ const MettreUtilisateursDansBDD = async () => {
         await sequelize.query('ALTER SEQUENCE "Users_id_seq" RESTART WITH 1');
 
 
+        // créer deux faux utilisateurs pour avoir qqch quand on lance notre serveurs
         const utilisateurs = [{
             firstName: "Lima",
             lastName: "Root",
@@ -63,17 +78,57 @@ const MettreUtilisateursDansBDD = async () => {
 }
 
 
+// inscription utilisateur
+app.post("/inscription", async (req, res) => {
+    try {
+
+        const firstName = req.body.firstName;
+        const lastName = req.body.lastName;
+        const email = req.body.email;
+        const password = req.body.password;
 
 
+        await User.create({
+            firstName,
+            lastName,
+            email,
+            password
+        })
+
+        console.log("inscription réalisée avec succès")
+
+        res.status(200).json({message : 'ca marche'});
+
+    } catch (err) {
+        console.error("erreur lors de l'inscription" + err)
+        res.status(400).json({message : 'ca ne marche pas'});
+    }
+} )
 
 
+// connexion utilisateur
+app.post('/connexion', async (req, res) => {
+    try {
+        const firstName = req.body.firstName;
+        const password = req.body.password;
 
-// initialiser dotenv
-dotenv.config();
-const PORT = process.env.PORT || 3001;
+        const login = await User.findOne({where: { firstName }});
 
-// initialiser i18n
-app.use(i18n);
+        if (login && password == login.password) {
+            console.log("réalisée avec succès")
+
+            res.status(200).json({message : 'ca marche'});
+        } else {
+            console.log("Mot de passe incorrect");
+            res.status(401).json({ message: 'Mot de passe incorrect' });
+        }
+
+    } catch {
+        console.error(" lors de l'inscription" + err)
+        res.status(400).json({message : 'ca ne marche pas'});
+    }
+})
+
 
 
 
