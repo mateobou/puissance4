@@ -5,6 +5,7 @@
 3. [Middleware de traduction avec i18next](#middleware-de-traduction-i18next)
 4. [Middleware de route Game pour notre base de données](#middleware-de-route-Game)
 4. [Middleware de route Partie pour notre base de données](#middleware-de-route-Partie)
+5. [Inscription et connexion utilisateur](#inscription-et-connexion-utilisateur)
 
 
 
@@ -120,3 +121,27 @@ links: req.links
 <a name="middleware-de-route-Partie"></a>
 
 // a compléter
+
+
+### Inscription et connexion utilisateur
+Evidemment il faut allumer le serveur pour que ça marche.
+
+### inscription 
+Tout se fait sur une application pour tester une API comme Postman ou Insomnia. en POST chercher cette route http://localhost:3000/inscription et incorporer un json dans la requête : {
+"firstName": "A remplir",
+"lastName": "A remplir",
+"email": "A remplir",
+"password": "A remplir"
+}
+
+Puis envoyer la requête et vous allez obtenir un statut 200.
+
+### Connexion
+Pour la connexion pour savoir ce que vous pouvez prendre comment firstName et Password en get vous pouvez chercher d'abors en get sur Postman http://localhost:3000/utilisateurs, cela vous retournera un fichier jsopn avec tout les utilisateurs sur notre BDD. Ouvrez en parallèle un autre onglet postman et tapez http://localhost:3000/connexion en POST et mettre en json en requête : {
+"firstName": "A remplir",
+"password": "A remplir"
+}
+
+Si vous avez bien mit un firstName et un mot de passe qui existe dans la BDD, vous allez obtenir un statut retour 200 et un json {
+"message": "ca marche"
+}.

@@ -40,7 +40,11 @@ const MettreUtilisateursDansBDD = async () => {
     try {
 
         await User.destroy({
-            where: {},
+            where: {
+                firstName: {
+                    [Op.notIn]: ["Lima", "Loumo"]
+                }
+            },
             force: true,
         });
 
