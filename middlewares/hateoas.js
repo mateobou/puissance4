@@ -8,7 +8,19 @@ linksByRoute.set('/', [
 linksByRoute.set('/example', [
   { href: '/example', rel: 'self', method: 'DELETE', title: 'Détails d\'un utilisateur' },
 ]);
+linksByRoute.set('/inscription', [
+  { href: '/inscription', rel: 'create', method: 'POST', title: 'inscription pour un nouvelle utilisateur' },
+]);
+linksByRoute.set('/connexion', [
+  { href: '/connexion', rel: '', method: 'POST', title: 'connexion pour un nouvelle utilisateur' },
+]);
+linksByRoute.set('/utilisateurs', [
+  { href: '/utilisateurs', rel: 'read-to-BDD', method: 'GET', title: "Permet d'obtenir un JSON contenant tout mes utilisateurs avec toutes leurs informations" },
+]);
 
+linksByRoute.set('/exemple', [
+  { href: '/exemple', rel: 'create', method: 'POST', title: 'Route de test' },
+]);
 
 
 
