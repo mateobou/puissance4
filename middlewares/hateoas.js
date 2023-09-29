@@ -2,24 +2,20 @@
 const linksByRoute = new Map();
 
 // Ajout des liens HATEOAS personnalisés pour chaque route
-linksByRoute.set('/', [
-  { href: '/', rel: 'self', method: 'GET', title: 'Liste des utilisateurs' },
+linksByRoute.set('/api/v0/', [
+  { href: '/api/v0/', rel: 'self', method: 'GET', title: 'home + hateoas (ensemble des routes)' },
 ]);
-linksByRoute.set('/example', [
-  { href: '/example', rel: 'self', method: 'DELETE', title: 'Détails d\'un utilisateur' },
+linksByRoute.set('/api/v0/entrainement', [
+  { href: '/api/v0/entrainement', rel: 'self', method: 'DELETE', title: 'page entrainement en get noatamment pour i18n' },
 ]);
-linksByRoute.set('/inscription', [
-  { href: '/inscription', rel: 'create', method: 'POST', title: 'inscription pour un nouvelle utilisateur' },
+linksByRoute.set('/api/v0/inscription', [
+  { href: '/api/v0/inscription', rel: 'create', method: 'POST', title: 'inscription pour un nouvelle utilisateur' },
 ]);
-linksByRoute.set('/connexion', [
-  { href: '/connexion', rel: '', method: 'POST', title: 'connexion pour un nouvelle utilisateur' },
+linksByRoute.set('/api/v0/connexion', [
+  { href: '/api/v0/connexion', rel: '', method: 'POST', title: 'connexion pour un nouvelle utilisateur' },
 ]);
-linksByRoute.set('/utilisateurs', [
-  { href: '/utilisateurs', rel: 'read-to-BDD', method: 'GET', title: "Permet d'obtenir un JSON contenant tout mes utilisateurs avec toutes leurs informations" },
-]);
-
-linksByRoute.set('/exemple', [
-  { href: '/exemple', rel: 'create', method: 'POST', title: 'Route de test' },
+linksByRoute.set('/api/v0/utilisateurs', [
+  { href: '/api/v0/utilisateurs', rel: 'read-to-BDD', method: 'GET', title: "Permet d'obtenir un JSON contenant tout mes utilisateurs avec toutes leurs informations" },
 ]);
 
 
@@ -34,6 +30,9 @@ const croisement = () => {
 
     mesRoutes.push('/api/v0/connexion')
     mesRoutes.push('/api/v0/utilisateurs')
+    mesRoutes.push('/api/v0/entrainement')
+
+
 
   return mesRoutes;
 }

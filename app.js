@@ -1,5 +1,5 @@
 import express from 'express';
-
+import sequelize from "./lib/db.js";
 import dotenv from 'dotenv';
 
 /* importer nos middlewares */
@@ -13,7 +13,6 @@ app.use(express.json());
 // initialiser dotenv
 dotenv.config();
 const PORT = process.env.PORT || 3001;
-
 
 sequelize.sync().then(() => {
     console.log("Base de donnée sequelize synchronisé et marche bien");
@@ -32,47 +31,17 @@ app.use(getAllRoutes);
 
 /* importer les fonctionnailité avec le numéro de version */
 import userRoute from "./routes/V0/user.js";
-import sequelize from "./lib/db.js";
+import homeHateoas from "./routes/V0/homeHateoas.js";
+import entrainement from "./routes/V0/entrainement.js"
+
 
 const apiV0Router = express.Router();
 
 
 app.use('/api/V0/', userRoute)
+app.use(homeHateoas);
+app.use(entrainement)
 app.use('/api/V0/', apiV0Router)
-
-
-
-
-
-
-
-
-////////////////////a traiter
-app.get('/api/V0/', (req, res) => {
-    /* utiliser le middleware traduction key valeur du bon fichier json de langue de la route */ 
-    const messageTraduit = res.locals.t('Bienvenue');
-
-    res.json({
-        messageTraduit: messageTraduit,
-        routes: req.routes,
-        links: req.links
-      });
-});
-
-app.get('/api/V0/exemple', (req, res) => {
-
-    /* utiliser le middleware traduction key valeur du bon fichier json de langue de la route */ 
-    const messageTraduitOne = res.locals.t('Bienvenue');
-
-    res.json(
-        messageTraduitOne
-    );
-});
-
-
-
-
-
 
 
 
