@@ -26,11 +26,11 @@ const MesRoutesPrinc = [
 
 
 const croisement = () => {
-    const mesRoutes = [...MesRoutesPrinc];
+  const mesRoutes = [...MesRoutesPrinc];
 
-    mesRoutes.push('/api/v0/connexion')
-    mesRoutes.push('/api/v0/utilisateurs')
-    mesRoutes.push('/api/v0/entrainement')
+  mesRoutes.push('/api/v0/connexion')
+  mesRoutes.push('/api/v0/utilisateurs')
+  mesRoutes.push('/api/v0/entrainement')
 
 
 
