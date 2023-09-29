@@ -6,28 +6,51 @@ const PaginationDTO = require("../../dto/PaginationDTO");
 const UsersDtos = require("../../dto/UsersDto");
 const { User } = require("../../models");
 const Game = require("../../models/Game");
+const { gridInit, dropToken, checkWin } = require("../../algo");
+const { PLAYER_ONE, PLAYER_TWO } = require("../../enums/game");
 
 const router = Router();
 
-
+const grid = []
 
 router.get("/init", async (req, res) => {
-    //Doit créer 42 cases vides dans la table Game pour initialiser la partie
-    for(let x = 1; x<7;x++){
-        for(let y=1; y<8;y++){
-            const casePuissance4 = {
-                x,
-                y,
-                color:'empty',  
-            }
-            const game = await Game.create(casePuissance4);
-            res.status(201).json(casePuissance4);
-            res.send(casePuissance4)
-        }
-        
-    }
-  const user = await User.create(req.body);
+  grid = gridInit()
+  res.send(grid)
   res.status(201).json(user);
+});
+
+router.post("/play", async (req, res) => {
+  const column = req.query.x;
+  const player = req.query.player;
+  if(req.session.playerNumber === PLAYER_ONE || req.session.playerNumber === PLAYER_TWO){
+    const play = dropToken(column, player)
+    const isGameFinished = checkWin(player)
+
+    if(play){
+      res.status(200)
+      res.send("Superbe coup !")
+    }
+    if(isGameFinished){
+      res.send("Vous avez gagné !")
+    }
+  res.send("La colonne est pleine, choisissez une autre colonne.")
+  }
+  else {
+    res.send(`
+          <form action="/choosePlayer" method="post">
+              <label>
+                  Choisissez votre numéro de joueur:
+                  <select name="playerNumber">
+                      <option value="1">Joueur 1</option>
+                      <option value="2">Joueur 2</option>
+                  </select>
+              </label>
+              <button type="submit">Valider</button>
+          </form>
+      `);
+    
+  }
+
 });
 
 router.get("/:id", async (req, res) => {

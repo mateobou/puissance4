@@ -25,6 +25,7 @@ sequelize.sync().then(() => {
 // initialiser i18n
 app.use(i18n);
 app.use(getAllRoutes);
+app.use(express.urlencoded({ extended: true }));
 
 
 

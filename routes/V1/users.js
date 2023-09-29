@@ -29,10 +29,6 @@ router.get("/", async (req, res) => {
   res.send(new PaginationDTO(usersDtos, totalUsers, req));
 });
 
-router.post("/", async (req, res) => {
-  const user = await User.create(req.body);
-  res.status(201).json(user);
-});
 
 router.get("/:id", async (req, res) => {
   const user = await User.findByPk(req.params.id);
@@ -41,6 +37,47 @@ router.get("/:id", async (req, res) => {
   } else {
     res.sendStatus(404);
   }
+});
+app.get('/choosePlayer', (req, res) => {
+    res.send(`
+        <form action="/choosePlayer" method="post">
+            <label>
+                Choisissez votre numéro de joueur:
+                <select name="playerNumber">
+                    <option value="1">Joueur 1</option>
+                    <option value="2">Joueur 2</option>
+                </select>
+            </label>
+            <button type="submit">Valider</button>
+        </form>
+    `);
+});
+
+app.post('/choosePlayer', (req, res) => {
+    const playerNumber = req.body.playerNumber;
+    if (playerNumber === '1' || playerNumber === '2') {
+        req.session.playerNumber = playerNumber;
+        res.send(`Vous avez été enregistré en tant que joueur ${playerNumber}`);
+    } else {
+        res.status(400).send("Numéro de joueur invalide");
+    }
+});
+
+router.post("/users", async (req, res) => {
+  const user = req.body;
+  if (!user.name || !user.email) {
+    return res.status(400).send({ message: 'Name and Email are required.' });
+  }
+    try {
+      const user = await User.create(req.body);
+      res.status(201).send(user);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+
+  User.create(user)
+  res.status(201).send(user);
+
 });
 
 router.put("/:id", async (req, res) => {
