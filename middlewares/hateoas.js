@@ -23,17 +23,34 @@ linksByRoute.set('/exemple', [
 ]);
 
 
+// remplir tableau par route api ci besoin
+const MesRoutesPrinc = [
+  '/api/v0/inscription',
+]
+
+
+const croisement = () => {
+    const mesRoutes = [...MesRoutesPrinc];
+
+    mesRoutes.push('/api/v0/connexion')
+    mesRoutes.push('/api/v0/utilisateurs')
+
+  return mesRoutes;
+}
+
 
 export function getAllRoutes(req, res, next) {
   // Récupération des routes de l'application
   const routes = req.app._router.stack
-    .filter((middleware) => middleware.route !== undefined)
-    .map((middleware) => middleware.route.path);
+      .filter((middleware) => middleware.route !== undefined)
+      .map((middleware) => middleware.route.path);
 
   // Récupération de la route actuelle
   const currentRoute = req.originalUrl;
 
-  // Création des liens HATEOAS personnalisés pour chaque route
+  const Routes = croisement();
+
+  // Création des liens HATEOAS personnalisés pour chaque route, y compris les liens de croisement
   const links = routes.map((route) => {
     const link = {
       href: route,
@@ -51,7 +68,7 @@ export function getAllRoutes(req, res, next) {
   const index = routes.indexOf(currentRoute);
   if (index > -1) {
     routes.splice(index, 1);
-  }  
+  }
   // Ajouter la route courante en premier dans la liste
   routes.unshift(currentRoute);
 
@@ -59,13 +76,33 @@ export function getAllRoutes(req, res, next) {
   // Recherche de la position de la route actuelle dans le tableau des liens HATEOAS
   const currentIndex = links.findIndex(link => link.href === currentRoute);
 
+  //////////////////addddddddd
+  /*
+  // Création des liens HATEOAS personnalisés pour route de versionning
+  for (const route of Routes) {
+    if (linksByRoute.has(route)) {
+      const versionLinks = linksByRoute.get(route);
+      // Ajoutez les liens de version à la route actuelle
+      if (currentRoute === route) {
+        links.push(...versionLinks);
+      }
+    }
+  }
+*/
+
+
   // Déplacement de la route actuelle en première position dans le tableau des liens HATEOAS
   if (currentIndex !== -1) {
     const currentLink = links.splice(currentIndex, 1)[0];
     links.unshift(currentLink);
   }
 
-  req.routes = routes;
+  // Ajouter toutes les définitions de liens stockées dans linksByRoute
+  for (const [, linkDefinitions] of linksByRoute) {
+    links.push(...linkDefinitions);
+  }
+
+  req.routes = Routes.concat(routes);
   req.links = links;
-  next()
+  next();
 }

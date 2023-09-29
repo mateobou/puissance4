@@ -34,9 +34,11 @@ app.use(getAllRoutes);
 import userRoute from "./routes/V0/user.js";
 import sequelize from "./lib/db.js";
 
+const apiV0Router = express.Router();
 
 
 app.use('/api/V0/', userRoute)
+app.use('/api/V0/', apiV0Router)
 
 
 
