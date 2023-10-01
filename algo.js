@@ -73,10 +73,4 @@ export function dropToken(column, player) {
   return false;
 }
 
-// Boucle de jeu principale
-let currentPlayer = PLAYER_ONE;
-let gameFinished = false;
-while (!gameFinished)
   
-  // Afficher la grille
-  console.log(grid); 

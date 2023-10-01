@@ -35,10 +35,11 @@ import userRoute from "./routes/V0/user.js";
 import gameRoutes from "./routes/V1/game.js";
 import homeHateoas from "./routes/V0/homeHateoas.js";
 import entrainement from "./routes/V0/entrainement.js"
+import home from './routes/home.js';
 
 
 const apiV0Router = express.Router();
-app.use('/api', )
+app.use('/api',home)
 
 app.use('/api/V0/', userRoute)
 app.use(homeHateoas);

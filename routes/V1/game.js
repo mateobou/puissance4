@@ -2,9 +2,9 @@
  * User routes
  */
 import { Router } from 'express';
-import { User } from "../../models/User.js";
 import { gridInit, dropToken, checkWin } from "../../algo.js";
 import { PLAYER_ONE, PLAYER_TWO } from "../../enums/game.js";
+import User from '../../models/User.js';
 
 const router = Router();
 
