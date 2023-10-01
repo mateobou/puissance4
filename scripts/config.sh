@@ -1,4 +1,5 @@
 #!/bin/bash
 
 createdb puissance4
-createuser -s postgres
+createuser -s root
+

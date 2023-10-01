@@ -1,8 +1,8 @@
 /**
  * User routes
  */
-const { Router } = require("express");
-const PaginationDTO = require("../../dto/PaginationDTO");
+import { Router } from 'express';
+import PaginationDTO from "../../dto/PaginationDTO";
 const UsersDtos = require("../../dto/UsersDto");
 const { User } = require("../../models");
 

@@ -32,17 +32,19 @@ app.use(express.urlencoded({ extended: true }));
 
 /* importer les fonctionnailité avec le numéro de version */
 import userRoute from "./routes/V0/user.js";
+import gameRoutes from "./routes/V1/game.js";
 import homeHateoas from "./routes/V0/homeHateoas.js";
 import entrainement from "./routes/V0/entrainement.js"
 
 
 const apiV0Router = express.Router();
-
+app.use('/api', )
 
 app.use('/api/V0/', userRoute)
 app.use(homeHateoas);
 app.use(entrainement)
 app.use('/api/V0/', apiV0Router)
+app.use('api/v1/',gameRoutes)
 
 
 

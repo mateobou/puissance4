@@ -1,14 +1,12 @@
 /**
  * User routes
  */
-const { Router } = require("express");
-const PaginationDTO = require("../../dto/PaginationDTO");
-const UsersDtos = require("../../dto/UsersDto");
-const { User } = require("../../models");
-const Game = require("../../models/Game");
-const { gridInit, dropToken, checkWin } = require("../../algo");
-const { PLAYER_ONE, PLAYER_TWO } = require("../../enums/game");
-const { isPlayerSelected } = require("../../middlewares/auth");
+import { Router } from 'express';
+import { User } from "../../models/User.js";
+import { gridInit, dropToken, checkWin } from "../../algo.js";
+import { PLAYER_ONE, PLAYER_TWO } from "../../enums/game.js";
+import { isPlayerSelected } from "../../middlewares/auth.js";
+
 
 const router = Router();
 

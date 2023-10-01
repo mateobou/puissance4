@@ -1,5 +1,5 @@
 
-import { COLS, PLAYER_ONE, ROWS, EMPTY } from "./enums/game";
+import { COLS, PLAYER_ONE, ROWS, EMPTY } from "./enums/game.js";
 
 
 // Je créer une matrice de grille vide pour pouvoir y placer les jetons
