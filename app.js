@@ -5,8 +5,10 @@ import dotenv from 'dotenv';
 /* importer nos middlewares */
 import { getAllRoutes } from './middlewares/hateoas.js';
 import { i18n } from './middlewares/i18n.js';
+import {logRoutes} from './utils.js'
 
 export const app = express();
+const router = express.Router();
 app.use(express.json());
 
 
@@ -38,6 +40,7 @@ import entrainement from "./routes/V0/entrainement.js"
 import home from './routes/home.js';
 
 
+
 const apiV0Router = express.Router();
 app.use('/api',home)
 
@@ -47,7 +50,7 @@ app.use(entrainement)
 app.use('/api/V0/', apiV0Router)
 app.use('api/v1/',gameRoutes)
 
-
+app.use(logRoutes)
 
 
 

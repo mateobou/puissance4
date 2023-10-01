@@ -1,4 +1,4 @@
-import { app } from "./app.js";
+import express from 'express';
 
 export const isPlayerConnected = ()=>{
     if(req.session.playerNumber === PLAYER_ONE || req.session.playerNumber === PLAYER_TWO){
@@ -7,17 +7,14 @@ export const isPlayerConnected = ()=>{
     return false
 }
 
-export function afficherSousRoutes(routePrincipale) {
-    let routes = [];
-
-    app._router.stack.forEach((middleware) => {
-        if (middleware.route) {
-            const path = middleware.route.path;
-            if (path.startsWith(routePrincipale) && path !== routePrincipale) {
-                routes.push(path);
-            }
+export function logRoutes() {
+    const router = express.Router();
+    router.use(express.json());
+    console.log("Voici les routes disponibles :")
+    console.log(router.stack)
+    router.stack.forEach(function(r){
+        if (r.route && r.route.path){
+          console.log(r.route.path)
         }
-    });
-
-    return routes;
+      })
 }
