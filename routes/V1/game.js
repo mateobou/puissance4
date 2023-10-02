@@ -1,19 +1,20 @@
 /**
  * User routes
  */
-import { Router } from 'express';
+import express, { Router } from 'express';
 import { gridInit, dropToken, checkWin } from "../../algo.js";
 import { PLAYER_ONE, PLAYER_TWO } from "../../enums/game.js";
 import User from '../../models/User.js';
 
 const router = Router();
+router.use(express.json());
 
-const grid = []
+let grid = []
 
-router.get("/init", async (req, res) => {
+router.get("/", async (req, res) => {
   grid = gridInit()
-  res.send(grid)
-  res.status(201).json(user);
+  res.send("Voici le plateau de jeu : \n "+grid)
+  res.status(201).json(grid);
 });
 
 router.post("/play", async (req, res) => {
@@ -25,10 +26,10 @@ router.post("/play", async (req, res) => {
 
     if(play){
       res.status(200)
-      res.send("Superbe coup !")
+      res.send("Superbe coup ! \n "+grid)
     }
     if(isGameFinished){
-      res.send("Vous avez gagné !")
+      res.send("Vous avez gagné !  \n "+grid)
     }
   res.send("La colonne est pleine, choisissez une autre colonne.")
   }

@@ -2,9 +2,7 @@ import { Router } from 'express';
 
 const router = new Router();
 
-router.get('/', (req, res)=>{
-    res.send("Voici la liste des routes disponibles : \n /login pour se connecter \n /signup pour s'inscrire \n /play pour initialiser une partie.")
-})
+
 router.route('/accueil')
     .get((req, res, next) => {
         res.write('Hello the extraordinary world!');
